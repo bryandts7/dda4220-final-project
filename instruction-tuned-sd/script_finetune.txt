@@ -1,0 +1,27 @@
+export MODEL_ID="timbrooks/instruct-pix2pix"
+export DATASET_ID="bryandts/robot-action-prediction-dataset"
+export OUTPUT_DIR="instruct-pix2pix-robotwin-action-finetuned"
+export HUGGINGFACE_TOKEN={INPUT YOUR HUGGINGFACE_TOKEN}
+export HF_HOME="/root/autodl-tmp/.cache/huggingface"
+export HF_DATASETS_CACHE="/root/autodl-tmp/.cache/huggingface/datasets"
+export TRANSFORMERS_CACHE="/root/autodl-tmp/.cache/huggingface/models"
+
+HF_ENDPOINT=https://hf-mirror.com accelerate launch --mixed_precision="fp16" finetune_instruct_pix2pix.py \
+  --pretrained_model_name_or_path=$MODEL_ID \
+  --dataset_name=$DATASET_ID \
+  --cache_dir="/root/autodl-tmp/instruction-tuned-sd/datasets"\
+  --original_image_column="current_frame" \
+  --edit_prompt_column="instruction" \
+  --edited_image_column="future_frame" \
+  --use_ema \
+  --enable_xformers_memory_efficient_attention \
+  --resolution=128 \
+  --train_batch_size=16 --gradient_accumulation_steps=4 --gradient_checkpointing \
+  --num_train_epochs=3 \
+  --checkpointing_steps=5000 --checkpoints_total_limit=1 \
+  --learning_rate=5e-05 --lr_warmup_steps=0 \
+  --mixed_precision=fp16 \
+  --seed=42 \
+  --output_dir=$OUTPUT_DIR \
+  --hub_token=$HUGGINGFACE_TOKEN\
+  --push_to_hub

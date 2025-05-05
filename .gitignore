@@ -1,0 +1,39 @@
+.autodl
+.cache
+
+instruction-tuned-sd/datasets
+instruction-tuned-sd/instruct-pix2pix-robotwin-action-finetuned
+
+
+# Patterns from RoboTwin, adjusted for parent directory
+RoboTwin/aloha_maniskill_sim/
+RoboTwin/models/
+RoboTwin/data/*
+!RoboTwin/data/instructions
+RoboTwin/__pycache__/
+RoboTwin/**/.DS_Store/
+RoboTwin/policy/3D-Diffusion-Policy/3D-Diffusion-Policy/data/
+RoboTwin/policy/3D-Diffusion-Policy/3D-Diffusion-Policy/checkpoints/
+RoboTwin/result/
+RoboTwin/third_party/
+RoboTwin/result_dp3/
+RoboTwin/task_config/seeds/*.txt
+RoboTwin/run_all_task.sh
+RoboTwin/task_config/*
+RoboTwin/*.zip
+RoboTwin/robotwin.py
+RoboTwin/gpt_api/*
+RoboTwin/policy/weights/*
+!RoboTwin/policy/weights/README.md
+
+# For .DS_Store files everywhere in the repository
+**/.DS_Store
+
+# For zip files everywhere in the repository  
+*.zip
+
+# Common Python patterns
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
